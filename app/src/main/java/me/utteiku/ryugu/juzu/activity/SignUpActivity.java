@@ -1,10 +1,13 @@
-package me.utteiku.ryugu.juzu;
+package me.utteiku.ryugu.juzu.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import me.utteiku.ryugu.juzu.R;
+import me.utteiku.ryugu.juzu.activity.EntranceActivity;
 
 /**
  * Created by ryugu on 2017/08/19.

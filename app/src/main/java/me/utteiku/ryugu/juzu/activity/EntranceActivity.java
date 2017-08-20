@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu;
+package me.utteiku.ryugu.juzu.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import me.utteiku.ryugu.juzu.R;
 
 /**
  * Created by ryugu on 2017/08/19.
