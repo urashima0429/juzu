@@ -10,12 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import me.utteiku.ryugu.juzu.fragment.FriendFragment;
 import me.utteiku.ryugu.juzu.R;
+import me.utteiku.ryugu.juzu.fragment.FriendFragment;
+import me.utteiku.ryugu.juzu.fragment.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    private Bundle bundle = new Bundle();
+    private FragmentManager fragmentManager = getFragmentManager();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -23,29 +26,32 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_friend:
 
-                    String data[] = {"debug", ""};
-
-
-                    Bundle bundle = new Bundle();
-                    bundle.putStringArray("data", data);
+                    bundle.clear();
                     FriendFragment friendFragment = new FriendFragment();
                     friendFragment.setArguments(bundle);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.container, friendFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-
-
+                    FragmentTransaction transaction_friend = fragmentManager.beginTransaction();
+                    transaction_friend.replace(R.id.content, friendFragment);
+                    transaction_friend.addToBackStack(null);
+                    transaction_friend.commit();
                     return true;
+
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
                     return true;
+
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    return true;
+
+                case R.id.navigation_pref:
+
+                    bundle.clear();
+                    UserFragment userFragment = new UserFragment();
+                    userFragment.setArguments(bundle);
+                    FragmentTransaction transaction_user = fragmentManager.beginTransaction();
+                    transaction_user.replace(R.id.content, userFragment);
+                    transaction_user.addToBackStack(null);
+                    transaction_user.commit();
                     return true;
             }
             return false;
@@ -58,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
