@@ -37,7 +37,6 @@
         android:background="@drawable/style_button"
         android:id="@+id/signUpButton"
         android:text="@string/sign_up"
-        android:textSize="@dimen/text_size_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"

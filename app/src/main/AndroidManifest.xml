@@ -27,6 +27,11 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"></activity>
+
+        <service
+            android:name=".MyService"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>
