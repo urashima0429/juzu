@@ -1,6 +1,7 @@
 package me.utteiku.ryugu.juzu.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +17,16 @@ import me.utteiku.ryugu.juzu.R;
 
 public class EntranceActivity extends Activity {
 
+
+    private static String EXTRA_ITEM_ID = "extra_item_id";
+    public static Intent createIntent(Context context, int itemId) {
+        Intent intent = new Intent(context, EntranceActivity.class);
+        intent.putExtra(EXTRA_ITEM_ID, itemId);
+        return intent;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstance){
+    protected void onCreate(final Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_entrance);
 
@@ -34,8 +43,7 @@ public class EntranceActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // クリック時の処理
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                startActivity(MainActivity.createIntent(getApplicationContext(), 1));
             }
         });
 

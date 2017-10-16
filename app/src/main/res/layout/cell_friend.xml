@@ -81,21 +81,6 @@
                             android:textSize="@dimen/text_size_small" />
                     </LinearLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:weightSum="2">
-                    <Button
-                        android:id="@+id/button_introduce"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/introduce"
-                        android:textSize="@dimen/text_size_medium"
-                        android:background="@drawable/style_button"/>
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

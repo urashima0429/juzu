@@ -26,8 +26,7 @@ public class SignUpActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // クリック時の処理
-                Intent intent = new Intent(getApplicationContext(), EntranceActivity.class);
-                startActivity(intent);
+                startActivity(EntranceActivity.createIntent(getApplicationContext(), 1));
             }
         });
     }
