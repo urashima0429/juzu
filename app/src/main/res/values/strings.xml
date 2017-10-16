@@ -1,14 +1,18 @@
 <resources>
     <!-- general -->
-    <string name="app_name">juzu</string>
+    <string name="app_name">許嫁</string>
 
     <!-- sign up -->
     <string name="inciting_words">縁結びで小遣い稼ぎ！</string>
-    <string name="sign_up_with_line">LINEで登録</string>
+    <string name="start">はじめる</string>
 
     <!-- entrance -->
     <string name="Enter_name">名前を入力</string>
     <string name="sign_up">登録</string>
+
+    <!-- edit icon -->
+    <string name="take_now">今撮る</string>
+    <string name="from_camera_roll">カメラロール</string>
 
     <!--friend-->
     <string name="introduce">紹介する</string>

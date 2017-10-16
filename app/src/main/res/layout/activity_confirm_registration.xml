@@ -27,7 +27,7 @@
     <Button
         android:background="@drawable/style_button"
         android:id="@+id/signUpwithLineButton"
-        android:text="@string/sign_up_with_line"
+        android:text="@string/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"

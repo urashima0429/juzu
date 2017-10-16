@@ -16,6 +16,14 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
+    <DatePicker
+        android:id="@+id/birthdayPicker"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </DatePicker>
+
     <Spinner
         android:id="@+id/spinner_sex"
         android:layout_width="wrap_content"

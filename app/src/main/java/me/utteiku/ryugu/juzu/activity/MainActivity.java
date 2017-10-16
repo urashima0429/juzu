@@ -16,8 +16,6 @@ import me.utteiku.ryugu.juzu.R;
 import me.utteiku.ryugu.juzu.fragment.FriendFragment;
 import me.utteiku.ryugu.juzu.fragment.NotificationFragment;
 import me.utteiku.ryugu.juzu.fragment.UserFragment;
-import me.utteiku.ryugu.juzu.model.Notification;
-import me.utteiku.ryugu.juzu.model.User;
 
 public class MainActivity extends AppCompatActivity {
 

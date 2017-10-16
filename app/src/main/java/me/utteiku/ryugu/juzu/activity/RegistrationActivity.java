@@ -15,12 +15,12 @@ import me.utteiku.ryugu.juzu.R;
  * Created by ryugu on 2017/08/19.
  */
 
-public class EntranceActivity extends Activity {
+public class RegistrationActivity extends Activity {
 
 
     private static String EXTRA_ITEM_ID = "extra_item_id";
     public static Intent createIntent(Context context, int itemId) {
-        Intent intent = new Intent(context, EntranceActivity.class);
+        Intent intent = new Intent(context, RegistrationActivity.class);
         intent.putExtra(EXTRA_ITEM_ID, itemId);
         return intent;
     }
@@ -28,7 +28,7 @@ public class EntranceActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstance){
         super.onCreate(savedInstance);
-        setContentView(R.layout.activity_entrance);
+        setContentView(R.layout.activity_registration);
 
         //Todo from DB
         Spinner spinner = (Spinner) findViewById(R.id.spinner_sex);
@@ -43,7 +43,7 @@ public class EntranceActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // クリック時の処理
-                startActivity(MainActivity.createIntent(getApplicationContext(), 1));
+                startActivity(EditIconActivity.createIntent(getApplicationContext()));
             }
         });
 
