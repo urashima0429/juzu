@@ -32,6 +32,12 @@
             android:name=".MyService"
             android:exported="false">
         </service>
+
+        <provider
+            android:authorities="me.utteiku.ryugu.juzu.dbprovider"
+            android:name=".DBProvider"
+            android:exported="false">
+        </provider>
     </application>
 
 </manifest>
