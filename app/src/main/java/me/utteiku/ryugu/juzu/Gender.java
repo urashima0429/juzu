@@ -13,7 +13,7 @@ public enum Gender {
     private final int key;
     private final String value;
 
-    private Gender(final int key, final String value) {
+    Gender(final int key, final String value) {
         this.key = key;
         this.value = value;
     }

@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu.fragment;
+package me.utteiku.ryugu.juzu.views;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
@@ -13,12 +13,8 @@ import java.util.List;
 import me.utteiku.ryugu.juzu.R;
 import me.utteiku.ryugu.juzu.databinding.FragmentUserBinding;
 import me.utteiku.ryugu.juzu.model.User;
-import me.utteiku.ryugu.juzu.service.MarketServiceHolder;
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
+import me.utteiku.ryugu.juzu.api.MarketServiceHolder;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
@@ -54,11 +50,11 @@ public class UserFragment extends Fragment {
                     @Override
                     public void call(List<User> users) {
                         for (User user : users) {
-                            fragmentUserBinding.userName.setText(user.getName());
-                            fragmentUserBinding.userAge.setText("Age:" + String.valueOf(user.getAge()));
-                            fragmentUserBinding.userGender.setText(user.getGender().getValue());
-                            fragmentUserBinding.userPoint.setText("point:" + user.getPoint());
-                            fragmentUserBinding.userIntroduce.setText(user.getIntroduction());
+                            fragmentUserBinding.userName.setText(user.name);
+                            fragmentUserBinding.userAge.setText("Age:" + String.valueOf(user.age));
+                            fragmentUserBinding.userGender.setText(user.gender.getValue());
+                            fragmentUserBinding.userPoint.setText("point:" + user.point);
+                            fragmentUserBinding.userIntroduce.setText(user.introduction);
                         }
                     }
                     //onError

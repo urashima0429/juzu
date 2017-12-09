@@ -1,23 +1,23 @@
 package me.utteiku.ryugu.juzu.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ryugu on 2017/08/23.
  */
 
-public class Notification {
+public class Notification implements Serializable {
 
-    private int id;
-    private int content;
+    public int id;
+    public String text;
 
-    public Notification(int id, int content){
+    public Notification(){
+        this.id = 0;
+        this.text = null;
+    }
+
+    public Notification(int id, String text){
         this.id = id;
-        this.content = content;
-    }
-
-    public int getId() {
-        return id;
-    }
-    public int getContent() {
-        return content;
+        this.text = text;
     }
 }

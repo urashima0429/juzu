@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu.service;
+package me.utteiku.ryugu.juzu.api;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

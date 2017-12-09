@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu.activity;
+package me.utteiku.ryugu.juzu.views;
 
 
 import android.app.ActivityManager;
@@ -20,11 +20,8 @@ import android.view.MenuItem;
 import java.util.List;
 
 import me.utteiku.ryugu.juzu.INotificationService;
-import me.utteiku.ryugu.juzu.NotificationService;
+import me.utteiku.ryugu.juzu.notification.NotificationService;
 import me.utteiku.ryugu.juzu.R;
-import me.utteiku.ryugu.juzu.fragment.FriendFragment;
-import me.utteiku.ryugu.juzu.fragment.NotificationFragment;
-import me.utteiku.ryugu.juzu.fragment.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
 

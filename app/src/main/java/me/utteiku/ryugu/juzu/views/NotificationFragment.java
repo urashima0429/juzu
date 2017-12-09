@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu.fragment;
+package me.utteiku.ryugu.juzu.views;
 
 import android.app.Fragment;
 import android.databinding.DataBindingUtil;
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import me.utteiku.ryugu.juzu.R;
-import me.utteiku.ryugu.juzu.adapter.NotificationAdapter;
 import me.utteiku.ryugu.juzu.databinding.FragmentNotificationBinding;
 import me.utteiku.ryugu.juzu.model.Notification;
 
@@ -46,24 +45,7 @@ public class NotificationFragment extends Fragment {
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        adapter.add(new Notification(1, 1));
-        adapter.add(new Notification(2, 1));
-        adapter.add(new Notification(3, 1));
-        adapter.add(new Notification(4, 1));
-        adapter.add(new Notification(5, 1));
-        adapter.add(new Notification(6, 1));
-        adapter.add(new Notification(7, 1));
-        adapter.add(new Notification(8, 1));
-        adapter.add(new Notification(9, 1));
-        adapter.add(new Notification(10, 1));
-        adapter.add(new Notification(11, 1));
-        adapter.add(new Notification(12, 1));
-        adapter.add(new Notification(13, 1));
-        adapter.add(new Notification(14, 1));
-        adapter.add(new Notification(15, 1));
-        adapter.add(new Notification(16, 1));
-        adapter.add(new Notification(17, 1));
-
+        adapter.add(new Notification());
 
         adapter.notifyDataSetChanged();
         return binding.getRoot();

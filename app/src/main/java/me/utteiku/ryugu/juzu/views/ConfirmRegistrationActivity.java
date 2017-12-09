@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu.activity;
+package me.utteiku.ryugu.juzu.views;
 
 import android.app.Activity;
 import android.os.Bundle;

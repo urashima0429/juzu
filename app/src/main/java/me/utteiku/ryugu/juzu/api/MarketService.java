@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu.service;
+package me.utteiku.ryugu.juzu.api;
 
 import java.util.List;
 

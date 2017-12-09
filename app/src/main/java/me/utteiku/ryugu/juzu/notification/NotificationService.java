@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu;
+package me.utteiku.ryugu.juzu.notification;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -12,6 +12,9 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
+
+import me.utteiku.ryugu.juzu.INotificationService;
+import me.utteiku.ryugu.juzu.R;
 
 /**
  * Created by ryugu on 2017/10/16.

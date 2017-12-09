@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu.adapter;
+package me.utteiku.ryugu.juzu.views;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.utteiku.ryugu.juzu.R;
-import me.utteiku.ryugu.juzu.databinding.CellNotificationBinding;
-import me.utteiku.ryugu.juzu.model.Notification;
+import me.utteiku.ryugu.juzu.databinding.CellFriendBinding;
+import me.utteiku.ryugu.juzu.model.Friend;
 
 /**
  * Created by ryugu on 2017/08/21.
  */
 
-public class NotificationAdapter extends RecyclerView.Adapter< NotificationAdapter.ViewHolder>{
+public class FriendAdapter extends RecyclerView.Adapter< FriendAdapter.ViewHolder>{
 
-    private List<Notification> notifications = new ArrayList<>();
+    private List<Friend> friends = new ArrayList<>();
     private ClickListener listener;
 
     public interface ClickListener {
-        void onClickItem(Notification notification, View view);
+        void onClickItem(Friend friend, View view);
     }
 
     public void setClickListener(ClickListener listener) {
@@ -33,37 +33,44 @@ public class NotificationAdapter extends RecyclerView.Adapter< NotificationAdapt
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.cell_notification, parent, false);
+        View view = inflater.inflate(R.layout.cell_friend, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Notification notification = notifications.get(position);
-        holder.binding.notificationId.setText("ID:" + String.valueOf( notification.getId() ));
-        holder.binding.notificationContent.setText("content:" + String.valueOf(notification.getContent()));
+        final Friend friend = friends.get(position);
+        holder.binding.personName.setText(friend.name);
+        holder.binding.personAge.setText("Age:" + String.valueOf( friend.age ));
+        holder.binding.personGender.setText(friend.gender.getValue());
+        holder.binding.personIntroduce.setText(friend.introduction);
         holder.binding.getRoot().setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                if (listener != null ){
-                    listener.onClickItem(notification, view);
+            public void onClick(View view){
+                if (listener != null){
+                    listener.onClickItem(friend, view);
                 }
             }
         });
     }
 
-    public void add(Notification notification){
-        notifications.add(notification);
+    public void add(Friend friend){
+        friends.add(friend);
+    }
+    public void addAll(List<Friend> friendList){
+        for (Friend friend : friendList) {
+            friends.add(friend);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return notifications.size();
+        return friends.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private CellNotificationBinding binding;
+        private CellFriendBinding binding;
         public ViewHolder(View itemView) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);

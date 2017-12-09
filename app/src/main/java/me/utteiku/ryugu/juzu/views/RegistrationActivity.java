@@ -1,4 +1,4 @@
-package me.utteiku.ryugu.juzu.activity;
+package me.utteiku.ryugu.juzu.views;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -47,46 +47,10 @@ public class RegistrationActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                // クリック時の処理
-                try {
-                    writeDB(nameEditer.getText().toString());
-                    writeDB(birtydayPicker.toString());
-                    writeDB(sexSpinner.toString());
-                } catch (Exception e) {
-                    toast("" + e);
-                }
+                // on clicked
                 startActivity(EditIconActivity.createIntent(getApplicationContext()));
             }
         });
-
-
-
-    }
-
-    //DBprovider
-    private void writeDB(String info) throws Exception{
-        // コンテンツプロバイダが提供するデータベースが示すURI
-        Uri uri = Uri.parse("content://me.utteiku.ryugu.juzu.dbprovider/");
-
-        //コンテンツプロバイダが提供するデータベースへのアクセス
-        ContentValues values = new ContentValues();
-        values.put("id", "0");
-        values.put("info",info);
-        int num = getContentResolver().update(uri, values, null, null);
-        if ( num == 0 ) getContentResolver().insert(uri, values);
-    }
-
-    private String readDB() throws Exception{
-        // コンテンツプロバイダが提供するデータベースが示すURI
-        Uri uri = Uri.parse("content://me.utteiku.ryugu.juzu.dbprovider/");
-
-        //コンテンツプロバイダが提供するデータベースへのアクセス
-        Cursor c = this.getContentResolver().query(uri, new String[]{"id", "info"}, "id='0'", null, null);
-        if (c.getCount() == 0) throw new Exception();
-        c.moveToFirst();
-        String str = c.getString(1);
-        c.close();
-        return str;
     }
 
     //toast
