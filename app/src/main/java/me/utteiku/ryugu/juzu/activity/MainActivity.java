@@ -11,16 +11,15 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-
-
 import java.util.List;
 
-import me.utteiku.ryugu.juzu.IMyService;
+import me.utteiku.ryugu.juzu.INotificationService;
 import me.utteiku.ryugu.juzu.NotificationService;
 import me.utteiku.ryugu.juzu.R;
 import me.utteiku.ryugu.juzu.fragment.FriendFragment;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private int prevItemId;
     private Bundle bundle = new Bundle();
     private FragmentManager fragmentManager = getFragmentManager();
-    private IMyService binder;
+    private INotificationService binder;
     private Intent serviceIntent;
 
     private static String EXTRA_ITEM_ID = "extra_item_id";
@@ -41,7 +40,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_ITEM_ID, itemId);
         return intent;
     }
-
+    private ServiceConnection notificationServiceConnection = new ServiceConnection(){
+        public void onServiceConnected(ComponentName name, IBinder service){
+            binder = INotificationService.Stub.asInterface(service);
+        }
+        public void onServiceDisconnected(ComponentName name){
+            binder = null;
+        }
+    };
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -83,21 +89,22 @@ public class MainActivity extends AppCompatActivity {
         prevItemId = R.id.navigation_friend;
         fragmentTransaction(UserFragment.newInstance(0));
 
-        //service
+        //start notification service
         serviceIntent = new Intent(this, NotificationService.class);
         if(isServiceRunning("me.utteiku.ryugu.juzu/.NotificationService")) {
-            bindService(serviceIntent, connection, BIND_AUTO_CREATE);
+            bindService(serviceIntent, notificationServiceConnection, BIND_AUTO_CREATE);
         }
         startService(serviceIntent);
+
     }
 
     private void fragmentTransaction(Fragment fragment){
-            bundle.clear();
-            fragment.setArguments(bundle);
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.content, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+        bundle.clear();
+        fragment.setArguments(bundle);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private boolean isServiceRunning(String classname){
@@ -111,15 +118,11 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private ServiceConnection connection = new ServiceConnection(){
+    private void setNotificationServiceMassage(String msg) {
+        try {
+            binder.setMessage(msg);
+        } catch (RemoteException e) {
 
-        public void onServiceConnected(ComponentName name, IBinder service){
-            binder = IMyService.Stub.asInterface(service);
         }
-
-        public void onServiceDisconnected(ComponentName name){
-            binder = null;
-        }
-    };
-
+    }
 }
