@@ -22,6 +22,7 @@ import java.util.List;
 import me.utteiku.ryugu.juzu.INotificationService;
 import me.utteiku.ryugu.juzu.notification.NotificationService;
 import me.utteiku.ryugu.juzu.R;
+import me.utteiku.ryugu.juzu.views.Huntee.HunteeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
             if(prevItemId != id) {
                 prevItemId = id;
                 switch (id) {
-                    case R.id.navigation_friend:
-                        fragmentTransaction(FriendFragment.newInstance(0));
+                    case R.id.navigation_home:
                         return true;
 
-                    case R.id.navigation_dashboard:
+                    case R.id.navigation_huntee:
+                        fragmentTransaction(HunteeFragment.newInstance(0));
                         return true;
 
                     case R.id.navigation_notifications:
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        prevItemId = R.id.navigation_friend;
+        prevItemId = R.id.navigation_huntee;
         fragmentTransaction(UserFragment.newInstance(0));
 
         //start notification service

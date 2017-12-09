@@ -9,7 +9,6 @@ public enum Gender {
     female(1,"female"),
     other(2,"other");
 
-    /* Enum定義 */
     private final int key;
     private final String value;
 

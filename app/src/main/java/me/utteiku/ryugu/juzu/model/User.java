@@ -11,12 +11,13 @@ import me.utteiku.ryugu.juzu.Gender;
  * Created by ryugu on 2017/08/20.
  */
 
-public class User implements Serializable {
+public class User implements Person, Serializable {
 
     public int id;
     public String name;
     public int age;
     public Gender gender;
+    public String occupation;
     public int point;
     public String introduction;
     public String address;
