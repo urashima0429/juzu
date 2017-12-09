@@ -57,6 +57,11 @@ public class FriendAdapter extends RecyclerView.Adapter< FriendAdapter.ViewHolde
     public void add(Friend friend){
         friends.add(friend);
     }
+    public void addAll(List<Friend> friendList){
+        for (Friend friend : friendList) {
+            friends.add(friend);
+        }
+    }
 
     @Override
     public int getItemCount() {

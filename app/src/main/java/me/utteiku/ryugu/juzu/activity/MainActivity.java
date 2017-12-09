@@ -16,11 +16,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import java.util.Date;
+
+
 import java.util.List;
 
 import me.utteiku.ryugu.juzu.IMyService;
-import me.utteiku.ryugu.juzu.MyService;
+import me.utteiku.ryugu.juzu.NotificationService;
 import me.utteiku.ryugu.juzu.R;
 import me.utteiku.ryugu.juzu.fragment.FriendFragment;
 import me.utteiku.ryugu.juzu.fragment.NotificationFragment;
@@ -80,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         prevItemId = R.id.navigation_friend;
-        fragmentTransaction(FriendFragment.newInstance(0));
+        fragmentTransaction(UserFragment.newInstance(0));
 
         //service
-        serviceIntent = new Intent(this, MyService.class);
-        if(isServiceRunning("me.utteiku.ryugu.juzu/.MyService")) {
+        serviceIntent = new Intent(this, NotificationService.class);
+        if(isServiceRunning("me.utteiku.ryugu.juzu/.NotificationService")) {
             bindService(serviceIntent, connection, BIND_AUTO_CREATE);
         }
         startService(serviceIntent);

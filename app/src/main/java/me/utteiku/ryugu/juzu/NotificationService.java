@@ -16,7 +16,7 @@ import android.widget.Toast;
  * Created by ryugu on 2017/10/16.
  */
 
-public class MyService extends Service{
+public class NotificationService extends Service{
     private Handler handler = new Handler();
     private boolean running = false;
     private String message = "Message";
@@ -37,7 +37,7 @@ public class MyService extends Service{
                     handler.post(new Runnable(){
                         @Override
                         public void run() {
-                            toast(MyService.this, message);
+                            toast(NotificationService.this, message);
                         }
                     });
 

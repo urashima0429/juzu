@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import me.utteiku.ryugu.juzu.DBProvider;
 import me.utteiku.ryugu.juzu.R;
 
 /**
@@ -56,9 +55,10 @@ public class RegistrationActivity extends Activity {
                 } catch (Exception e) {
                     toast("" + e);
                 }
-                //startActivity(EditIconActivity.createIntent(getApplicationContext()));
+                startActivity(EditIconActivity.createIntent(getApplicationContext()));
             }
         });
+
 
 
     }

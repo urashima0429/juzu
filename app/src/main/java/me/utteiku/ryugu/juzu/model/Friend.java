@@ -8,12 +8,14 @@ import me.utteiku.ryugu.juzu.Gender;
 
 public class Friend {
 
+
     private int id;
     private String name;
     private int age;
     private Gender gender;
     private String introduction;
     private String address;
+
 
     public Friend(int id, String name, int age, Gender gender, String introduction, String address){
         this.id = id;

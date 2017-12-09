@@ -6,11 +6,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import me.utteiku.ryugu.juzu.Gender;
+import java.util.List;
+
 import me.utteiku.ryugu.juzu.R;
 import me.utteiku.ryugu.juzu.databinding.FragmentUserBinding;
 import me.utteiku.ryugu.juzu.model.User;
+import me.utteiku.ryugu.juzu.service.MarketServiceHolder;
+import rx.Observable;
+import rx.Observer;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by ryugu on 2017/08/21.
@@ -35,16 +45,29 @@ public class UserFragment extends Fragment {
         //Bundle args = getArguments();
         //categoryId = args.getString(ARGS_CATEGORY_ID);
 
-
-        User user = new User(1, "first", 20, Gender.male, 1000, false, "恋人募集中です！よろしくおねがいします！！", "first@example.com");
-
         fragmentUserBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false);
-        fragmentUserBinding.userName.setText(user.getName());
-        fragmentUserBinding.userAge.setText("Age:" + String.valueOf(user.getAge()));
-        fragmentUserBinding.userGender.setText(user.getGender().getValue());
-        fragmentUserBinding.userPoint.setText("point:" + user.getPoint());
-        fragmentUserBinding.userIntroduce.setText(user.getIntroduction());
+        MarketServiceHolder.get()
+                .users()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<User>>() {
+                    @Override
+                    public void call(List<User> users) {
+                        for (User user : users) {
+                            fragmentUserBinding.userName.setText(user.getName());
+                            fragmentUserBinding.userAge.setText("Age:" + String.valueOf(user.getAge()));
+                            fragmentUserBinding.userGender.setText(user.getGender().getValue());
+                            fragmentUserBinding.userPoint.setText("point:" + user.getPoint());
+                            fragmentUserBinding.userIntroduce.setText(user.getIntroduction());
+                        }
+                    }
+                    //onError
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Toast.makeText(getActivity(), "failure", Toast.LENGTH_SHORT);
+                    }
+                });
         return fragmentUserBinding.getRoot();
-
     }
 }
