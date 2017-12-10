@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import me.utteiku.ryugu.juzu.Gender;
 import me.utteiku.ryugu.juzu.R;
 import me.utteiku.ryugu.juzu.databinding.FragmentUserBinding;
+import me.utteiku.ryugu.juzu.manager.UserManager;
 import me.utteiku.ryugu.juzu.model.User;
 import me.utteiku.ryugu.juzu.api.MarketServiceHolder;
 import rx.android.schedulers.AndroidSchedulers;
@@ -23,14 +25,13 @@ import rx.schedulers.Schedulers;
  */
 
 public class UserFragment extends Fragment {
- 
-    private FragmentUserBinding fragmentUserBinding;
-    //private static final String ARGS_CATEGORY_ID = "friend_id";
 
-    public static UserFragment newInstance(int userId) {
+    private UserManager userManager;
+    private FragmentUserBinding fragmentUserBinding;
+
+    public static UserFragment newInstance() {
         UserFragment fragment = new UserFragment();
         Bundle bundle = new Bundle();
-        //bundle.putString(ARGS_CATEGORY_ID, userId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -38,32 +39,41 @@ public class UserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //Bundle args = getArguments();
-        //categoryId = args.getString(ARGS_CATEGORY_ID);
+        userManager = UserManager.getInstance();
 
-        fragmentUserBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false);
-        MarketServiceHolder.get()
-                .users()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<User>>() {
-                    @Override
-                    public void call(List<User> users) {
-                        for (User user : users) {
-                            fragmentUserBinding.userName.setText(user.name);
-                            fragmentUserBinding.userAge.setText("Age:" + String.valueOf(user.age));
-                            fragmentUserBinding.userGender.setText(user.gender.getValue());
-                            fragmentUserBinding.userPoint.setText("point:" + user.point);
-                            fragmentUserBinding.userIntroduce.setText(user.introduction);
-                        }
-                    }
-                    //onError
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Toast.makeText(getActivity(), "failure", Toast.LENGTH_SHORT);
-                    }
-                });
-        return fragmentUserBinding.getRoot();
+        if (userManager.isRegistered()) {
+            fragmentUserBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false);
+            fragmentUserBinding.userName.setText(userManager.getUsername());
+            fragmentUserBinding.userAge.setText("Age:" + String.valueOf(0));
+            fragmentUserBinding.userGender.setText("Gender:" + Gender.other.getValue());
+            fragmentUserBinding.userPoint.setText("point:"+ 0);
+            fragmentUserBinding.userIntroduce.setText(null);
+            return fragmentUserBinding.getRoot();
+
+//        MarketServiceHolder.get()
+//                .users()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<List<User>>() {
+//                    @Override
+//                    public void call(List<User> users) {
+//                        for (User user : users) {
+//                            fragmentUserBinding.userName.setText(user.name);
+//                            fragmentUserBinding.userAge.setText("Age:" + String.valueOf(user.age));
+//                            fragmentUserBinding.userGender.setText(user.gender.getValue());
+//                            fragmentUserBinding.userPoint.setText("point:" + user.point);
+//                            fragmentUserBinding.userIntroduce.setText(user.introduction);
+//                        }
+//                    }
+//                    //onError
+//                }, new Action1<Throwable>() {
+//                    @Override
+//                    public void call(Throwable throwable) {
+//                        Toast.makeText(getActivity(), "failure", Toast.LENGTH_SHORT);
+//                    }
+//                });
+        } else {
+            return  null;
+        }
     }
 }

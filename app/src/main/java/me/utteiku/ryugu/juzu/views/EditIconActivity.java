@@ -31,7 +31,7 @@ public class EditIconActivity extends Activity{
             @Override
             public void onClick(View v) {
                 // クリック時の処理
-                startActivity(MainActivity.createIntent(getApplicationContext(), 1));
+                startActivity(MainActivity.createIntent(getApplicationContext()));
             }
         });
 
@@ -41,7 +41,7 @@ public class EditIconActivity extends Activity{
             @Override
             public void onClick(View v) {
                 // クリック時の処理
-                startActivity(MainActivity.createIntent(getApplicationContext(), 1));
+                startActivity(MainActivity.createIntent(getApplicationContext()));
             }
         });
     }

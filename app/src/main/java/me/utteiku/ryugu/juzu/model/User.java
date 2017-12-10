@@ -1,5 +1,8 @@
 package me.utteiku.ryugu.juzu.model;
 
+import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -27,16 +30,18 @@ public class User implements Person, Serializable {
         this.name = null;
         this.age = 0;
         this.gender = Gender.other;
+        this.occupation = null;
         this.point = 0;
         this.introduction = null;
         this.address = null;
     }
 
-    public User(int id, String name, int age, Gender gender, int point, String introduction, String address){
+    public User(int id, String name, int age, Gender gender, String occupation, int point, String introduction, String address){
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.occupation = occupation;
         this.point = point;
         this.introduction = introduction;
         this.address = address;

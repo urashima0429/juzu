@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
     private INotificationService binder;
     private Intent serviceIntent;
 
-    private static String EXTRA_ITEM_ID = "extra_item_id";
-    public static Intent createIntent(Context context, int itemId) {
+    public static Intent createIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra(EXTRA_ITEM_ID, itemId);
         return intent;
     }
+
+    //notification service connection
     private ServiceConnection notificationServiceConnection = new ServiceConnection(){
         public void onServiceConnected(ComponentName name, IBinder service){
             binder = INotificationService.Stub.asInterface(service);
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             binder = null;
         }
     };
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.navigation_pref:
-                        fragmentTransaction(UserFragment.newInstance(0));
+                        fragmentTransaction(UserFragment.newInstance());
                         return true;
                 }
             }
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         prevItemId = R.id.navigation_huntee;
-        fragmentTransaction(UserFragment.newInstance(0));
+        fragmentTransaction(UserFragment.newInstance());
 
         //start notification service
         serviceIntent = new Intent(this, NotificationService.class);
